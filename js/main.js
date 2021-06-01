@@ -24,7 +24,7 @@ getRandomNumber(min, max);
 
 // eslint-disable-next-line no-unused-vars
 let comment = '';
-let message = 'Комментарий не может быть длиннее 140 знаков!';
+let message = false;
 
 function textLong() {
   if(comment.length > 140) {

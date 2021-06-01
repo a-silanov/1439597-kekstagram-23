@@ -1,6 +1,7 @@
-/* eslint-disable no-console */
 /* eslint-disable prefer-const */
 // Функция, возвращающая случайное целое число из переданного диапазона включительно.
+
+/* описание метода взято с https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random. Пока не совсем разобрался с функцией- почему прибавляем 1 и min,но еще подумаю*/
 
 // eslint-disable-next-line prefer-const
 let min = 0;
@@ -20,3 +21,18 @@ function getRandomNumber(min, max) {
 getRandomNumber(min, max);
 
 // Функция для проверки максимальной длины строки.
+
+// eslint-disable-next-line no-unused-vars
+let comment = '';
+let message = 'Комментарий не может быть длиннее 140 знаков!';
+
+function textLong() {
+  if(comment.length > 140) {
+    return message;
+  }
+  return comment;
+}
+textLong();
+
+/* а через тернарный оператор ведь можно вот так? или не стоит?:
+ let textLong = (comment.length > 140) ? comment : message; */

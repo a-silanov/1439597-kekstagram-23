@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Александр Силанов](https://up.htmlacademy.ru/javascript/23/user/1439597).
-* Наставник: [Сергей Филоненко] (https://htmlacademy.ru/profile/rewoop)
+* Наставник: [Сергей Филоненко](https://htmlacademy.ru/profile/rewoop)
 
 ---
 

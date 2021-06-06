@@ -37,11 +37,6 @@ const DESCRIPTION = [
   'Из архива',
 ];
 
-const randomDescriptionIndex = getRandomNumber(0, DESCRIPTION.length - 1);
-DESCRIPTION[randomDescriptionIndex];
-
-const LIKES = getRandomNumber(15, 200);
-
 const MESSAGE = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -51,32 +46,19 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const randomMessageIndex = getRandomNumber(0, MESSAGE.length - 1);
-MESSAGE[randomMessageIndex];
-
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
 const createPhotoDescription = () => ({
-  id: getRandomArrayElement(ID),
+  id: ID,
   url: `photos/${  getRandomNumber(1, 25)  }.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
-  likes: getRandomArrayElement(LIKES),
+  likes: getRandomNumber(15, 200),
   comments: [{
     id: getRandomNumber(1, 25),
-    avatar: `img/avatar-${  ID  }.svg`,
+    avatar: `img/avatar-${  getRandomNumber(1, 6)  }.svg`,
     message: getRandomArrayElement(MESSAGE),
     name: getRandomArrayElement(NAMES),
   },
   ],
 });
 createPhotoDescription();
-
-const photo = [
-  createPhotoDescription(),
-  createPhotoDescription(),
-  createPhotoDescription(),
-  createPhotoDescription(),
-];
-
-// eslint-disable-next-line no-console
-console.log(photo); //не понимаю,почему ругается линтер?вроде в демонстрации все так же было

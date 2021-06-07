@@ -1,19 +1,12 @@
-// Функция для проверки максимальной длины строки.
-
-const textLong = (comment, long) => comment.length <= long;
-
-textLong('это строка', 140);
-
-// Функция, возвращающая случайное целое число из переданного диапазона включительно.
-
-/* описание метода взято с https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random. Пока не совсем разобрался с функцией- почему прибавляем 1 и min,но еще подумаю*/
-
-
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-getRandomNumber(2, 45);
-
-const ID = getRandomNumber(1, 25);
-
+const COUNT_POST_PHOTOS = 25;
+const MIN_PHOTO_IDS = 1;
+const MAX_PHOTO_IDS = 25;
+const MIN_COUNT_IDS = 1;
+const MAX_COUNT_IDS = 10000;
+const MIN_AVATAR_NUMBERS = 1;
+const MAX_AVATAR_NUMBERS = 6;
+const MIN_LIKES_NUMBERS = 15;
+const MAX_LIKES_NUMBERS = 200;
 
 const NAMES = [
   'Олег',
@@ -28,7 +21,7 @@ const NAMES = [
   'Денис',
 ];
 
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Без фильтров',
   'Новая камера',
   'Зацените фотку!',
@@ -37,7 +30,7 @@ const DESCRIPTION = [
   'Из архива',
 ];
 
-const MESSAGE = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -46,19 +39,33 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
+function getRandomNumber (min, max) {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+}
+
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-const createPhotoDescription = () => ({
-  id: ID,
-  url: `photos/${  getRandomNumber(1, 25)  }.jpg`,
-  description: getRandomArrayElement(DESCRIPTION),
-  likes: getRandomNumber(15, 200),
-  comments: [{
-    id: getRandomNumber(1, 25),
-    avatar: `img/avatar-${  getRandomNumber(1, 6)  }.svg`,
-    message: getRandomArrayElement(MESSAGE),
+const createUserComment = () => ({
+  return: {
+    id: getRandomNumber(MIN_COUNT_IDS, MAX_COUNT_IDS),
+    avatar: `img/avatar-${  getRandomNumber(MIN_AVATAR_NUMBERS, MAX_AVATAR_NUMBERS)  }.svg`,
+    message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(NAMES),
   },
-  ],
+});
+createUserComment();
+
+const createPhotoDescription = () => ({
+  id: getRandomNumber(MIN_PHOTO_IDS, MAX_PHOTO_IDS),
+  url: `photos/${  getRandomNumber(MIN_PHOTO_IDS, MAX_PHOTO_IDS)  }.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomNumber(MIN_LIKES_NUMBERS, MAX_LIKES_NUMBERS),
+  comments: createUserComment(),
 });
 createPhotoDescription();
+
+// eslint-disable-next-line no-unused-vars
+const usersPosts = new Array(COUNT_POST_PHOTOS).fill(null).map(() => createPhotoDescription());

@@ -1,12 +1,10 @@
-const COUNT_POST_PHOTOS = 25;
-const MIN_PHOTO_IDS = 1;
-const MAX_PHOTO_IDS = 25;
-const MIN_COUNT_IDS = 1;
-const MAX_COUNT_IDS = 10000;
-const MIN_AVATAR_NUMBERS = 1;
-const MAX_AVATAR_NUMBERS = 6;
-const MIN_LIKES_NUMBERS = 15;
-const MAX_LIKES_NUMBERS = 200;
+const COUNT_POST_PHOTO = 25;
+const MIN_COMMENT_NUMBER = 1;
+const MAX_COMMENT_NUMBER = 3;
+const MIN_AVATAR_NUMBER = 1;
+const MAX_AVATAR_NUMBER = 6;
+const MIN_LIKES_NUMBER = 15;
+const MAX_LIKES_NUMBER = 200;
 
 const NAMES = [
   'Олег',
@@ -39,33 +37,31 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-function getRandomNumber (min, max) {
+const getRandomNumber = (min, max) => {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-}
+};
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-const createUserComment = () => ({
+const createUserComment = (index) => ({
   return: {
-    id: getRandomNumber(MIN_COUNT_IDS, MAX_COUNT_IDS),
-    avatar: `img/avatar-${  getRandomNumber(MIN_AVATAR_NUMBERS, MAX_AVATAR_NUMBERS)  }.svg`,
+    id: index,
+    avatar: `img/avatar-${  getRandomNumber(MIN_AVATAR_NUMBER, MAX_AVATAR_NUMBER)  }.svg`,
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(NAMES),
   },
 });
-createUserComment();
 
-const createPhotoDescription = () => ({
-  id: getRandomNumber(MIN_PHOTO_IDS, MAX_PHOTO_IDS),
-  url: `photos/${  getRandomNumber(MIN_PHOTO_IDS, MAX_PHOTO_IDS)  }.jpg`,
+
+const createPhotoDescription = (index) => ({
+  id: index,
+  url: `photos/${index}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomNumber(MIN_LIKES_NUMBERS, MAX_LIKES_NUMBERS),
-  comments: createUserComment(),
+  likes: getRandomNumber(MIN_LIKES_NUMBER, MAX_LIKES_NUMBER),
+  comments: new Array(getRandomNumber(MIN_COMMENT_NUMBER, MAX_COMMENT_NUMBER)).fill(null).map((item, i) => createUserComment(i + 1)),
 });
-createPhotoDescription();
 
-// eslint-disable-next-line no-unused-vars
-const usersPosts = new Array(COUNT_POST_PHOTOS).fill(null).map(() => createPhotoDescription());
+new Array(COUNT_POST_PHOTO).fill(null).map((item, index) => createPhotoDescription(index + 1));

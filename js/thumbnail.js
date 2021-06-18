@@ -1,8 +1,8 @@
-import {createPhotoDescription} from '.data/js';
+import {post} from './data.js';
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
 const picturesList = document.querySelector('pictures');
 
-const renderThumbnails = createPhotoDescription();
+const renderThumbnails = post;
 
 const picturesListFragment = document.createDocumentFragment();
 

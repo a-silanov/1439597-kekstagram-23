@@ -1,6 +1,6 @@
 import {post} from './data.js';
 const templatePicture = document.querySelector('#picture').content.querySelector('.picture');
-const picturesList = document.querySelector('pictures');
+const picturesList = document.querySelector('.pictures');
 
 const renderThumbnails = post;
 

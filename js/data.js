@@ -59,4 +59,5 @@ const createPhotoDescription = (index) => ({
   comments: new Array(getRandomNumber(MIN_COMMENT_NUMBER, MAX_COMMENT_NUMBER)).fill(null).map((item, i) => createUserComment(i + 1)),
 });
 
-new Array(COUNT_POST_PHOTO).fill(null).map((item, index) => createPhotoDescription(index + 1));
+const post = new Array(COUNT_POST_PHOTO).fill(null).map((item, index) => createPhotoDescription(index + 1));
+export {post};

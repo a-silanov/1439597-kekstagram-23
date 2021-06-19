@@ -49,7 +49,7 @@ const createUserComment = (index) => ({
     name: getRandomArrayElement(NAMES),
   },
 });
-
+export{createUserComment};
 
 const createPhotoDescription = (index) => ({
   id: index,

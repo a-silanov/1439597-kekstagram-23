@@ -1,3 +1,5 @@
+import {isEscKeyDown, hideElement, showElement} from './util.js';
+
 /* Для отображения окна нужно удалять класс hidden у элемента .big-picture и каждый раз заполнять его данными о конкретной фотографии:
 
 Адрес изображения url подставьте как src изображения внутри блока .big-picture__img.
@@ -23,15 +25,23 @@
 
 Напишите код для закрытия окна по нажатию клавиши Esc и клике по иконке закрытия.
  */
+const bigPicture = document.querySelector('.big-picture');
+//bigPicture.classList.remove('hidden');
+showElement(bigPicture);
+//const bigPictureImg = bigPicture.querySelector('.big-picture__img');
+//const likesCount = bigPicture.querySelector('.likes-count');
+const commentsCount = bigPicture.querySelector('.comments-count');
+//const socialComments = bigPicture.querySelector('.social__comments');
+//const description = bigPicture.querySelector('.social__caption');
+const commentsLoader = bigPicture.querySelector('.comments-loader');
 
-const openPicture = document.querySelector('.big-picture');
-openPicture.classList.remove('hidden');
-
+hideElement(commentsLoader);
+hideElement(commentsCount);
 //Закрытие при нажатии на Esc
 
 document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape' || evt.key === 'Esc') {
+  if (isEscKeyDown) {
     evt.preventDefault();
-    openPicture.classList.add('hidden');
+    bigPicture.classList.add('hidden');
   }
 });

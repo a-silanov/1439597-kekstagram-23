@@ -10,7 +10,7 @@ const commentsCount = bigPicture.querySelector('.comments-count');
 const socialDescription = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const socialCommentCount = bigPicture.querySelector('.social__comment-count');
-//const btnBigPictureClose = bigPicture.querySelector('.big-picture__cancel');
+const btnBigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 
 const openPopup = (photo) => {
   document.body.classList.add('modal-open');
@@ -35,4 +35,9 @@ document.addEventListener('keydown', (evt) => {
     evt.preventDefault();
     bigPicture.classList.add('hidden');
   }
+});
+
+btnBigPictureClose.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  bigPicture.classList.add('hidden');
 });

@@ -22,10 +22,10 @@ const openPopup = (photo) => {
   commentsCount.textContent = photo.comments.length;
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
-  socialComments.forEach(({avatar, name, message}) => {
+  photo.comments.forEach(({avatar,name, message}) => {
     socialComments.img = avatar;
-    socialComments.name = name;
-    socialComments.message = message;
+    socialComments.name.textContent = name;
+    socialComments.message.textContent = message;
   });
 };
 

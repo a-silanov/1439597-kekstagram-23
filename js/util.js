@@ -7,7 +7,6 @@ const getRandomNumber = (min, max) => {
 
 
 const isEscKeyDown = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
-
 const hideElement = (el) => el.classList.add('hidden');
 
 export {getRandomNumber};

@@ -6,11 +6,13 @@ const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const commentsCount = bigPicture.querySelector('.comments-count');
-const socialComments = bigPicture.querySelector('.social__comments');
+const socialPicture = document.querySelector('.social__picture');
+const socialText = document.querySelector('.social__text');
 const socialDescription = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const btnBigPictureClose = bigPicture.querySelector('.big-picture__cancel');
+
 
 const openPopup = (photo) => {
   document.body.classList.add('modal-open');
@@ -23,9 +25,9 @@ const openPopup = (photo) => {
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
   photo.comments.forEach(({avatar,name, message}) => {
-    socialComments.img = avatar;
-    socialComments.name.textContent = name;
-    socialComments.message.textContent = message;
+    socialPicture.src = avatar;
+    socialPicture.alt = name;
+    socialText.textContent = message;
   });
 };
 

@@ -24,22 +24,26 @@ const openPopup = (photo) => {
   commentsCount.textContent = photo.comments.length;
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
+  socialComments.innerHTML = '';
   photo.comments.forEach(({avatar,name, message}) => {
-    const commentElement = socialComments.cloneNode(true);
 
     const commentItem = document.createElement('li');
     const commentItemImg = document.createElement('img');
     const commentItemText = document.createElement('p');
-    commentItemImg.src = avatar;
-    commentItemImg.alt = name;
+
+    commentItem.classList.add('social__comment');
+    commentItemImg.classList.add('social__picture');
     commentItemText.classList.add('social__text');
     commentItemText.textContent = message;
+    commentItemImg.src = avatar;
+    commentItemImg.alt = name;
 
-    commentItem.appendChild(commentElement);
+    commentItem.appendChild(commentItemImg);
+    commentItem.appendChild(commentItemText);
+    commentsFragment.appendChild(commentItem);
   });
+  socialComments.appendChild(commentsFragment);
 };
-
-socialCommentCount.appendChild(commentsFragment);
 
 photos.forEach( (photo, i) => {
   photo.addEventListener('click', () => {

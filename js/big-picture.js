@@ -6,12 +6,12 @@ const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('img');
 const likesCount = bigPicture.querySelector('.likes-count');
 const commentsCount = bigPicture.querySelector('.comments-count');
-const socialPicture = document.querySelector('.social__picture');
-const socialText = document.querySelector('.social__text');
 const socialDescription = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const btnBigPictureClose = bigPicture.querySelector('.big-picture__cancel');
+const socialComments = document.querySelector('.social__comments');
+const commentsFragment = document.createDocumentFragment();
 
 
 const openPopup = (photo) => {
@@ -25,11 +25,21 @@ const openPopup = (photo) => {
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
   photo.comments.forEach(({avatar,name, message}) => {
-    socialPicture.src = avatar;
-    socialPicture.alt = name;
-    socialText.textContent = message;
+    const commentElement = socialComments.cloneNode(true);
+
+    const commentItem = document.createElement('li');
+    const commentItemImg = document.createElement('img');
+    const commentItemText = document.createElement('p');
+    commentItemImg.src = avatar;
+    commentItemImg.alt = name;
+    commentItemText.classList.add('social__text');
+    commentItemText.textContent = message;
+
+    commentItem.appendChild(commentElement);
   });
 };
+
+socialCommentCount.appendChild(commentsFragment);
 
 photos.forEach( (photo, i) => {
   photo.addEventListener('click', () => {

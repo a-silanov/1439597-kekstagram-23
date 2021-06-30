@@ -42,14 +42,11 @@ const MESSAGES = [
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
 const createUserComment = (index) => ({
-  return: {
-    id: index,
-    avatar: `img/avatar-${  getRandomNumber(MIN_AVATAR_NUMBER, MAX_AVATAR_NUMBER)  }.svg`,
-    message: getRandomArrayElement(MESSAGES),
-    name: getRandomArrayElement(NAMES),
-  },
+  id: index,
+  avatar: `img/avatar-${  getRandomNumber(MIN_AVATAR_NUMBER, MAX_AVATAR_NUMBER)  }.svg`,
+  message: getRandomArrayElement(MESSAGES),
+  name: getRandomArrayElement(NAMES),
 });
-
 
 const createPhotoDescription = (index) => ({
   id: index,
@@ -59,5 +56,5 @@ const createPhotoDescription = (index) => ({
   comments: new Array(getRandomNumber(MIN_COMMENT_NUMBER, MAX_COMMENT_NUMBER)).fill(null).map((item, i) => createUserComment(i + 1)),
 });
 
-const post = new Array(COUNT_POST_PHOTO).fill(null).map((item, index) => createPhotoDescription(index + 1));
-export {post};
+const posts = new Array(COUNT_POST_PHOTO).fill(null).map((item, index) => createPhotoDescription(index + 1));
+export {posts};

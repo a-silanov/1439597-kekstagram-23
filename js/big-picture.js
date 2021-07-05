@@ -54,11 +54,13 @@ photos.forEach( (photo, i) => {
 btnBigPictureClose.addEventListener('click', (evt) => {
   evt.preventDefault();
   bigPicture.classList.add('hidden');
+  document.body.classList.remove('modal-open');
 });
 
 document.addEventListener('keydown', (evt) => {
   if (isEscKeyDown) {
     evt.preventDefault();
+    document.body.classList.remove('modal-open');
     bigPicture.classList.add('hidden');
   }
 });

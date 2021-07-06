@@ -10,6 +10,7 @@ const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const closeUploadForm = uploadForm.querySelector('.img-upload__cancel');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const textComment = uploadForm.querySelector('.text__description');
+const hashtagDuplicates = new Set ();
 
 const onUploadFile = () => {
   uploadOverlay.classList.remove('hidden');
@@ -51,6 +52,8 @@ hashtagsInput.addEventListener('input', () => {
     hashtagsInput.setCustomValidity('Хэштег не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи');
   } else if (hashtagsInput.includes('#')) {
     hashtagsInput.setCustomValidity('Хеш-тег не может состоять только из одной решётки');
+  } else if (hashtagDuplicates.size !== hashtagsInput.length) {
+    hashtagsInput.setCustomValidity('Хеш-тег не должен повторяться');
   } else {
     hashtagsInput.setCustomValidity('');
   }

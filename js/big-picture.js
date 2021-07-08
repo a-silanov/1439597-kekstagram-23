@@ -54,6 +54,9 @@ const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const commentInput = bigPicture.querySelector('.social__footer-text');
 const uploadFile = uploadForm.querySelector('#upload-file');
+const textComment = uploadForm.querySelector('.text__description');
+const hashtagsInput = uploadForm.querySelector('.text__hashtags');
+
 
 btnBigPictureClose.addEventListener('click', (evt) => {
   evt.preventDefault();
@@ -67,9 +70,19 @@ btnBigPictureClose.addEventListener('click', (evt) => {
 });
 
 document.addEventListener('keydown', (evt) => {
-  if (isEscKeyDown) {
-    evt.preventDefault();
-    document.body.classList.remove('modal-open');
-    bigPicture.classList.add('hidden');
+  if (isEscKeyDown(evt)) {
+    if(textComment === document.activeElement) {
+      evt.stopPropagation();
+    } else if(hashtagsInput === document.activeElement) {
+      evt.stopPropagation();
+    } else {
+      uploadOverlay.classList.add('hidden');
+      bigPicture.classList.add('hidden');
+      socialCommentCount.classList.remove('hidden');
+      commentsLoader.classList.remove('hidden');
+      document.body.classList.remove('modal-open');
+      commentInput.value = '';
+      uploadFile.value = '';
+    }
   }
 });

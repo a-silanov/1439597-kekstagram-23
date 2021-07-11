@@ -27,49 +27,41 @@ closeUploadForm.addEventListener('click', (evt) => {
   evt.preventDefault();
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  uploadFile.value = '';
 });
 
-document.addEventListener('keydown', (evt) => {
-  if (isEscKeyDown) {
-    evt.preventDefault();
-    document.body.classList.remove('modal-open');
-    uploadOverlay.classList.add('hidden');
+document.addEventListener('keydown', isEscKeyDown);
+
+const validateComment = (evt) =>{
+  const commentLength = evt.target.value.length;
+  if (commentLength > MAX_COMMENT_LENGTH) {
+    evt.target.setCustomValidity(`Удалите лишние ${commentLength - MAX_COMMENT_LENGTH} симв.`);
+  }else {
+    evt.target.setCustomValidity('');
   }
-});
-
-const validComment = () => {
-  textComment.addEventListener('input', (evt) =>{
-    const commentLength = evt.target.value.length;
-    if (commentLength > MAX_COMMENT_LENGTH) {
-      evt.target.setCustomValidity(`Удалите лишние ${commentLength - MAX_COMMENT_LENGTH} симв.`);
-    }else {
-      evt.target.setCustomValidity('');
-    }
-    evt.target.reportValidity();
-  });
+  evt.target.reportValidity();
 };
 
 const validateHashtags = () => {
   if (hashtagsInput.value !== '') {
-    const hashtags = hashtagsInput.value.trim().split('').filter((hashtag) => hashtag);
+    const hashtags = hashtagsInput.value.toLowerCase().trim().split(' ').filter((hashtag) => hashtag);
     const hashtagDuplicates = new Set (hashtags);
     hashtags.forEach((hashtag) => {
       if(!HASHTAGS_CHECK.test(hashtag)) {
         hashtagsInput.setCustomValidity(TEXT_HASHTAG_VALIDATE);
-      } else if (hashtagDuplicates.size !== hashtagsInput.length) {
+      } else if (hashtagDuplicates.size !== hashtags.length) {
         hashtagsInput.setCustomValidity(HASHTAGS_NO_REPEAT);
       } else {
         hashtagsInput.setCustomValidity('');
       }
       hashtagsInput.reportValidity();
     });
-    if (hashtagsInput.length > HASHTAGS_COUNT) {
+    if (hashtags.length > HASHTAGS_COUNT) {
       hashtagsInput.setCustomValidity('нельзя указать больше пяти хэш-тегов');
     }
   }
+  hashtagsInput.setCustomValidity('');
 };
 
 hashtagsInput.addEventListener('input', validateHashtags);
-
-
-export {validComment};
+textComment.addEventListener('input', validateComment);

@@ -12,6 +12,10 @@ const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const btnBigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 const socialComments = document.querySelector('.social__comments');
 const commentsFragment = document.createDocumentFragment();
+const uploadForm = document.querySelector('.img-upload__form');
+const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
+const commentInput = bigPicture.querySelector('.social__footer-text');
+const uploadFile = uploadForm.querySelector('#upload-file');
 
 
 const openPopup = (photo) => {
@@ -53,15 +57,13 @@ photos.forEach( (photo, i) => {
 
 btnBigPictureClose.addEventListener('click', (evt) => {
   evt.preventDefault();
+  uploadOverlay.classList.add('hidden');
   bigPicture.classList.add('hidden');
   socialCommentCount.classList.remove('hidden');
   commentsLoader.classList.remove('hidden');
   document.body.classList.remove('modal-open');
+  commentInput.value = '';
+  uploadFile.value = '';
 });
 
-document.addEventListener('keydown', (evt) => {
-  if (isEscKeyDown) {
-    evt.preventDefault();
-    bigPicture.classList.add('hidden');
-  }
-});
+document.addEventListener('keydown', isEscKeyDown);

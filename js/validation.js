@@ -27,12 +27,11 @@ closeUploadForm.addEventListener('click', (evt) => {
   evt.preventDefault();
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  uploadFile.value = '';
 });
 
 document.addEventListener('keydown', isEscKeyDown);
 
-const validateComment = (evt) =>{
+const validComment = (evt) => {
   const commentLength = evt.target.value.length;
   if (commentLength > MAX_COMMENT_LENGTH) {
     evt.target.setCustomValidity(`Удалите лишние ${commentLength - MAX_COMMENT_LENGTH} симв.`);
@@ -60,8 +59,7 @@ const validateHashtags = () => {
       hashtagsInput.setCustomValidity('нельзя указать больше пяти хэш-тегов');
     }
   }
-  hashtagsInput.setCustomValidity('');
 };
 
 hashtagsInput.addEventListener('input', validateHashtags);
-textComment.addEventListener('input', validateComment);
+textComment.addEventListener('input', validComment);

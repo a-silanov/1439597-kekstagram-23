@@ -31,7 +31,7 @@ closeUploadForm.addEventListener('click', (evt) => {
 
 document.addEventListener('keydown', isEscKeyDown);
 
-const validComment = (evt) => {
+const onFormValidComment = (evt) => {
   const commentLength = evt.target.value.length;
   if (commentLength > MAX_COMMENT_LENGTH) {
     evt.target.setCustomValidity(`Удалите лишние ${commentLength - MAX_COMMENT_LENGTH} симв.`);
@@ -41,25 +41,28 @@ const validComment = (evt) => {
   evt.target.reportValidity();
 };
 
-const validateHashtags = () => {
+const onFormValidateHashtags = (evt) => {
   if (hashtagsInput.value !== '') {
     const hashtags = hashtagsInput.value.toLowerCase().trim().split(' ').filter((hashtag) => hashtag);
     const hashtagDuplicates = new Set (hashtags);
     hashtags.forEach((hashtag) => {
       if(!HASHTAGS_CHECK.test(hashtag)) {
         hashtagsInput.setCustomValidity(TEXT_HASHTAG_VALIDATE);
+        evt.preventDefault();
       } else if (hashtagDuplicates.size !== hashtags.length) {
         hashtagsInput.setCustomValidity(HASHTAGS_NO_REPEAT);
+        evt.preventDefault();
       } else {
         hashtagsInput.setCustomValidity('');
       }
       hashtagsInput.reportValidity();
     });
+
     if (hashtags.length > HASHTAGS_COUNT) {
       hashtagsInput.setCustomValidity('нельзя указать больше пяти хэш-тегов');
     }
   }
 };
 
-hashtagsInput.addEventListener('input', validateHashtags);
-textComment.addEventListener('input', validComment);
+hashtagsInput.addEventListener('input', onFormValidateHashtags);
+textComment.addEventListener('input', onFormValidComment);

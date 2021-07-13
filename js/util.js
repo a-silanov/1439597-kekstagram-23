@@ -15,7 +15,7 @@ const isEscKeyDown = (evt) => {
   if (evt.key === 'Escape' || evt.key === 'Esc') {
     if (hashtagsInput === document.activeElement) {
       evt.stopPropagation();
-    } else if (textComment !== document.activeElement) {
+    } else if (textComment === document.activeElement) {
       evt.stopPropagation();
     } else {
       evt.preventDefault();
@@ -24,7 +24,6 @@ const isEscKeyDown = (evt) => {
       hashtagsInput.value = '';
       textComment.value = '';
       uploadFile.value = '';
-
     }
   }
 };

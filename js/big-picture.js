@@ -1,4 +1,4 @@
-import {isEscKeyDown, hideElement} from './util.js';
+import {onEscKeyDown, hideElement} from './util.js';
 import {posts} from './data.js';
 
 const photos = document.querySelectorAll('.picture');
@@ -66,4 +66,4 @@ btnBigPictureClose.addEventListener('click', (evt) => {
   uploadFile.value = '';
 });
 
-document.addEventListener('keydown', isEscKeyDown);
+document.addEventListener('keydown', onEscKeyDown);

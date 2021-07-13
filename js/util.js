@@ -11,7 +11,7 @@ const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const textComment = uploadForm.querySelector('.text__description');
 
-const isEscKeyDown = (evt) => {
+const onEscKeyDown = (evt) => {
   if (evt.key === 'Escape' || evt.key === 'Esc') {
     if (hashtagsInput === document.activeElement) {
       evt.stopPropagation();
@@ -30,4 +30,4 @@ const isEscKeyDown = (evt) => {
 
 const hideElement = (el) => el.classList.add('hidden');
 export {getRandomNumber};
-export {isEscKeyDown, hideElement};
+export {onEscKeyDown, hideElement};

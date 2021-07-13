@@ -1,4 +1,4 @@
-import {isEscKeyDown} from './util.js';
+import {onEscKeyDown} from './util.js';
 
 const HASHTAGS_COUNT = 5;
 const HASHTAGS_CHECK = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
@@ -29,7 +29,7 @@ closeUploadForm.addEventListener('click', (evt) => {
   document.body.classList.remove('modal-open');
 });
 
-document.addEventListener('keydown', isEscKeyDown);
+document.addEventListener('keydown', onEscKeyDown);
 
 const onFormValidComment = (evt) => {
   const commentLength = evt.target.value.length;

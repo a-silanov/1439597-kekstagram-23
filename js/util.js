@@ -5,9 +5,29 @@ const getRandomNumber = (min, max) => {
   return Math.floor(result);
 };
 
+const uploadForm = document.querySelector('.img-upload__form');
+const uploadFile = uploadForm.querySelector('#upload-file');
+const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
+const hashtagsInput = uploadForm.querySelector('.text__hashtags');
+const textComment = uploadForm.querySelector('.text__description');
 
-const isEscKeyDown = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+const onEscKeyDown = (evt) => {
+  if (evt.key === 'Escape' || evt.key === 'Esc') {
+    if (hashtagsInput === document.activeElement) {
+      evt.stopPropagation();
+    } else if (textComment === document.activeElement) {
+      evt.stopPropagation();
+    } else {
+      evt.preventDefault();
+      document.body.classList.remove('modal-open');
+      uploadOverlay.classList.add('hidden');
+      hashtagsInput.value = '';
+      textComment.value = '';
+      uploadFile.value = '';
+    }
+  }
+};
+
 const hideElement = (el) => el.classList.add('hidden');
-
 export {getRandomNumber};
-export {isEscKeyDown, hideElement};
+export {onEscKeyDown, hideElement};

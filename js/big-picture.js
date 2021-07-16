@@ -1,5 +1,7 @@
 import {onEscKeyDown, hideElement} from './util.js';
 import {posts} from './data.js';
+import {renderComments} from './comment.js';
+import { clearComments } from './storage.js';
 
 const photos = document.querySelectorAll('.picture');
 const bigPicture = document.querySelector('.big-picture');
@@ -28,24 +30,7 @@ const openPopup = (photo) => {
   commentsCount.textContent = photo.comments.length;
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
-  socialComments.innerHTML = '';
-  photo.comments.forEach(({avatar,name, message}) => {
-
-    const commentItem = document.createElement('li');
-    const commentItemImg = document.createElement('img');
-    const commentItemText = document.createElement('p');
-
-    commentItem.classList.add('social__comment');
-    commentItemImg.classList.add('social__picture');
-    commentItemText.classList.add('social__text');
-    commentItemText.textContent = message;
-    commentItemImg.src = avatar;
-    commentItemImg.alt = name;
-
-    commentItem.appendChild(commentItemImg);
-    commentItem.appendChild(commentItemText);
-    commentsFragment.appendChild(commentItem);
-  });
+  renderComments();
   socialComments.appendChild(commentsFragment);
 };
 
@@ -64,6 +49,7 @@ btnBigPictureClose.addEventListener('click', (evt) => {
   document.body.classList.remove('modal-open');
   commentInput.value = '';
   uploadFile.value = '';
+  clearComments();
 });
 
 document.addEventListener('keydown', onEscKeyDown);

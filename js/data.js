@@ -58,3 +58,4 @@ const createPhotoDescription = (index) => ({
 
 const posts = new Array(COUNT_POST_PHOTO).fill(null).map((item, index) => createPhotoDescription(index + 1));
 export {posts};
+export {createPhotoDescription};

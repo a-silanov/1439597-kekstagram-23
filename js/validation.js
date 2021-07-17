@@ -3,16 +3,17 @@ import {onEscKeyDown} from './util.js';
 const HASHTAGS_COUNT = 5;
 const HASHTAGS_CHECK = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
 const MAX_COMMENT_LENGTH = 140;
+const TEXT_HASHTAG_VALIDATE = `Хэштег должен начинаться со знака "#" и включать в себя только буквы и цифры.
+          Количетво символов после знака "#" должно быть не менее 1 и не более 19. Чтобы добавить новый хэш-тег
+          добавьте пробел.`;
+const HASHTAGS_NO_REPEAT = 'Хэштеги не должны повторяться';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFile = uploadForm.querySelector('#upload-file');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const closeUploadForm = uploadForm.querySelector('.img-upload__cancel');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const textComment = uploadForm.querySelector('.text__description');
-const TEXT_HASHTAG_VALIDATE = `Хэштег должен начинаться со знака "#" и включать в себя только буквы и цифры.
-          Количетво символов после знака "#" должно быть не менее 1 и не более 19. Чтобы добавить новый хэш-тег
-          добавьте пробел.`;
-const HASHTAGS_NO_REPEAT = 'Хэштеги не должны повторяться';
+
 
 const onUploadFile = () => {
   uploadOverlay.classList.remove('hidden');

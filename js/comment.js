@@ -46,9 +46,10 @@ const renderComments = (comments) => {
     commentItem.appendChild(commentItemImg);
     commentItem.appendChild(commentItemText);
     commentsFragment.appendChild(commentItem);
+    showPartComments(getCurrentComments());
+    updateCounter(socialComments.childElementCount);
   });
-  showPartComments(getCurrentComments());
-  updateCounter(socialComments.childElementCount);
+  socialComments.appendChild(commentsFragment);
 };
 
 commentsLoader.addEventListener('click', downloadMore);

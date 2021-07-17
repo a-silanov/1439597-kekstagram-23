@@ -1,7 +1,7 @@
 import {onEscKeyDown, hideElement} from './util.js';
 import {posts} from './data.js';
 import {renderComments} from './comment.js';
-import { clearComments } from './storage.js';
+import {clearComments} from './storage.js';
 
 const photos = document.querySelectorAll('.picture');
 const bigPicture = document.querySelector('.big-picture');
@@ -12,8 +12,6 @@ const socialDescription = bigPicture.querySelector('.social__caption');
 const commentsLoader = bigPicture.querySelector('.comments-loader');
 const socialCommentCount = bigPicture.querySelector('.social__comment-count');
 const btnBigPictureClose = bigPicture.querySelector('.big-picture__cancel');
-const socialComments = document.querySelector('.social__comments');
-const commentsFragment = document.createDocumentFragment();
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const commentInput = bigPicture.querySelector('.social__footer-text');
@@ -30,8 +28,7 @@ const openPopup = (photo) => {
   commentsCount.textContent = photo.comments.length;
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
-  renderComments();
-  socialComments.appendChild(commentsFragment);
+  renderComments(photo.comments);
 };
 
 photos.forEach( (photo, i) => {

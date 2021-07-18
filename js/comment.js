@@ -1,11 +1,12 @@
 import {getCurrentComments} from './storage.js';
+import { hideElement, showElement} from './util.js';
 
 const socialComments = document.querySelector('.social__comments');
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 const MAX_VISIBLE_COUNT = 5;
 const commentsFragment = document.createDocumentFragment();
-
+const commentsRendered = document.querySelector('.comments-rendered');
 
 const updateCounter = (count) => socialCommentCount.firstChild.textContent = `${count} из `;
 
@@ -26,6 +27,18 @@ const showPartComments = (comments) => {
 const downloadMore = () => {
   showPartComments(getCurrentComments());
   updateCounter(socialComments.childElementCount);
+};
+
+const checkCommentsNumber = (number) => {
+  if (number >= MAX_VISIBLE_COUNT) {
+    commentsRendered.textContent = MAX_VISIBLE_COUNT;
+    showElement(commentsLoader);
+  } else {
+    hideElement(commentsLoader);
+  }
+
+  socialCommentCount.classList.toggle('hidden', number === 0);
+  socialComments.classList.toggle('hidden', number === 0);
 };
 
 const renderComments = (comments) => {
@@ -53,6 +66,6 @@ const renderComments = (comments) => {
 };
 
 commentsLoader.addEventListener('click', downloadMore);
-export {renderComments};
+export {checkCommentsNumber, renderComments};
 
 

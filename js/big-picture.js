@@ -1,6 +1,6 @@
 import {onEscKeyDown, hideElement} from './util.js';
 import {posts} from './data.js';
-import {renderComments} from './comment.js';
+import {checkCommentsNumber, renderComments} from './comment.js';
 import {clearComments} from './storage.js';
 
 const photos = document.querySelectorAll('.picture');
@@ -25,6 +25,7 @@ const openPopup = (photo) => {
   hideElement(commentsLoader);
   hideElement(socialCommentCount);
   bigPictureImg.src = photo.url;
+  checkCommentsNumber(photo.comments.length);
   commentsCount.textContent = photo.comments.length;
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;

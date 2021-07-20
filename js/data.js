@@ -1,8 +1,8 @@
 import {getRandomNumber} from './util.js';
 
 const COUNT_POST_PHOTO = 25;
-const MIN_COMMENT_NUMBER = 1;
-const MAX_COMMENT_NUMBER = 3;
+const MIN_COMMENT_NUMBER = 5;
+const MAX_COMMENT_NUMBER = 15;
 const MIN_AVATAR_NUMBER = 1;
 const MAX_AVATAR_NUMBER = 6;
 const MIN_LIKES_NUMBER = 15;

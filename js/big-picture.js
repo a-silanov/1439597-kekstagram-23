@@ -33,7 +33,7 @@ const openPopup = (photo) => {
   socialDescription.textContent = photo.description;
   socialComments.innerHTML = '';
   const generateCommentsList = (comments) => {
-    photo.comments.forEach(({avatar, name, message}) => {
+    comments.forEach(({avatar, name, message}) => {
       const comment = document.createElement('li');
       const commentImg = document.createElement('img');
       const commentText = document.createElement('p');
@@ -53,36 +53,35 @@ const openPopup = (photo) => {
     socialComments.appendChild(commentsFragment);
   };
 
-
-
   const commentsCounter = 0;
   let currentCommentsNumber = COMMENTS_LOAD_STEP;
 
-  const initialComments = comments.slice(commentsCounter, currentCommentsNumber);
-  socialCommentCount.firstChild.textContent = `${initialComments.length} из  `;
+  const initialComments = photo.comments.slice(commentsCounter, currentCommentsNumber);
+  socialCommentCount.firstChild.textContent = `${initialComments.length}`;
   generateCommentsList(initialComments);
 
   commentsLoader.addEventListener('click', () => {
     const newCommentsNumber = currentCommentsNumber + COMMENTS_LOAD_STEP;
-    const additionalComments = comments.slice(currentCommentsNumber, newCommentsNumber);
+    const additionalComments = photo.comments.slice(currentCommentsNumber, newCommentsNumber);
     currentCommentsNumber = newCommentsNumber;
     generateCommentsList(additionalComments);
 
     const renderedCommentsLength = document.querySelectorAll('.social__comment').length;
 
-    if (comments.length === renderedCommentsLength) {
+    if (photo.comments.length === renderedCommentsLength) {
       commentsLoader.classList.add('hidden');
     }
-    socialCommentCount.firstChild.textContent = `${renderedCommentsLength} из  `;
+    socialCommentCount.firstChild.textContent = `${renderedCommentsLength}`;
   });
 
-  if (comments.length > COMMENTS_LOAD_STEP) {
+  if (photo.comments.length > COMMENTS_LOAD_STEP) {
     socialCommentCount.classList.remove('hidden');
     commentsLoader.classList.remove('hidden');
   } else {
     socialCommentCount.classList.add('hidden');
     commentsLoader.classList.add('hidden');
   }
+};
 
 photos.forEach( (photo, i) => {
   photo.addEventListener('click', () => {

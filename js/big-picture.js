@@ -32,8 +32,8 @@ const openPopup = (photo) => {
   likesCount.textContent = photo.likes;
   socialDescription.textContent = photo.description;
   socialComments.innerHTML = '';
-  const generateCommentsList = (userComments) => {
-    userComments.forEach(({avatar, name, message}) => {
+  const generateCommentsList = (comments) => {
+    photo.comments.forEach(({avatar, name, message}) => {
       const comment = document.createElement('li');
       const commentImg = document.createElement('img');
       const commentText = document.createElement('p');

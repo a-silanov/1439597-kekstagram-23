@@ -29,5 +29,7 @@ const onEscKeyDown = (evt) => {
 };
 
 const hideElement = (el) => el.classList.add('hidden');
+const showElement = (el) => el.classList.remove('hidden');
+
 export {getRandomNumber};
-export {onEscKeyDown, hideElement};
+export {onEscKeyDown, hideElement, showElement};

@@ -32,6 +32,7 @@ const activateScaleEditor = () => {
 const deactivateScaleEditor = () => {
   btnBigger.removeEventListener('click', increasesScale);
   btnSmaller.removeEventListener('click', decreasesScale);
+  scaleValue.value = `${MAX_VALUE}%`;
 };
 
 export {activateScaleEditor, deactivateScaleEditor};

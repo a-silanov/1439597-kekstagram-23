@@ -1,6 +1,8 @@
-import {onEscKeyDown} from './util.js';
+import {onEscKeyDown} from './utils.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
 import {createSlider, removeSlider} from './editor.js';
+import {showSuccessMessage, showErrorMessage} from './alerts.js';
+import {sendData} from './api.js';
 
 const HASHTAGS_COUNT = 5;
 const HASHTAGS_CHECK = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
@@ -36,6 +38,23 @@ closeUploadForm.addEventListener('click', (evt) => {
 });
 
 document.addEventListener('keydown', onEscKeyDown);
+
+const onSuccess = () => {
+  closeUploadForm();
+  showSuccessMessage();
+};
+
+
+const setUserFormSubmit = () => {
+  uploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+
+    sendData(onSuccess, showErrorMessage, formData);
+  });
+};
+
+setUserFormSubmit(onSuccess);
 
 const onFormValidComment = (evt) => {
   const commentLength = evt.target.value.length;

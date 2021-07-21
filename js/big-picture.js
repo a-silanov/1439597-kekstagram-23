@@ -1,4 +1,4 @@
-import {onEscKeyDown, hideElement} from './util.js';
+import {onEscKeyDown, hideElement} from './utils.js';
 import {posts} from './data.js';
 
 const COMMENTS_LOAD_STEP = 5;

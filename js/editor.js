@@ -4,7 +4,11 @@ const slider = effectLevelField.querySelector('.effect-level__slider');
 const effectLevel = effectLevelField.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects__list');
 const imgPreview = document.querySelector('.img-upload__preview img');
-
+const STEP = 0.1;
+const MIN = 0;
+const MAX = 1;
+const HUNDRED = 100;
+const THREE = 3;
 
 const resetEffect = () => {
   imgPreview.removeAttribute('class');
@@ -15,11 +19,11 @@ const createSlider = () => {
   effectLevelField.classList.add('hidden');
   noUiSlider.create(slider, {
     range: {
-      min: 0,
-      max: 1,
+      min: MIN,
+      max: MAX,
     },
-    start: 1,
-    step: 0.1,
+    start: MAX,
+    step: STEP,
     connect: 'lower',
   });
 
@@ -40,11 +44,11 @@ const createSlider = () => {
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
-            min: 0,
-            max: 1,
+            min: MIN,
+            max: MAX,
           },
-          start: 1,
-          step: 0.1,
+          start: MAX,
+          step: STEP,
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
@@ -57,11 +61,11 @@ const createSlider = () => {
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
-            min: 0,
-            max: 1,
+            min: MIN,
+            max: MAX,
           },
-          start: 1,
-          step: 0.1,
+          start: MAX,
+          step: STEP,
         });
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
           effectLevel.value = unencoded[handle];
@@ -73,11 +77,11 @@ const createSlider = () => {
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
-            min: 0,
-            max: 100,
+            min: MIN,
+            max: HUNDRED,
           },
-          start: 100,
-          step: 1,
+          start: HUNDRED,
+          step: STEP,
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
@@ -90,11 +94,11 @@ const createSlider = () => {
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
-            min: 0,
-            max: 3,
+            min: MIN,
+            max: THREE,
           },
-          start: 3,
-          step: 0.1,
+          start: THREE,
+          step: STEP,
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {
@@ -107,11 +111,11 @@ const createSlider = () => {
         imgPreview.style.filter = '';
         slider.noUiSlider.updateOptions({
           range: {
-            min: 1,
-            max: 3,
+            min: MAX,
+            max: THREE,
           },
-          start: 3,
-          step: 0.1,
+          start: THREE,
+          step: STEP,
         });
 
         slider.noUiSlider.on('update', (_, handle, unencoded) => {

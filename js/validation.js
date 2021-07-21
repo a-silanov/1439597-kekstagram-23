@@ -1,4 +1,6 @@
 import {onEscKeyDown} from './util.js';
+import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
+import {createSlider, removeSlider} from './editor.js';
 
 const HASHTAGS_COUNT = 5;
 const HASHTAGS_CHECK = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
@@ -18,6 +20,8 @@ const textComment = uploadForm.querySelector('.text__description');
 const onUploadFile = () => {
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  activateScaleEditor();
+  createSlider();
 };
 
 uploadFile.addEventListener('change', onUploadFile);
@@ -26,6 +30,9 @@ closeUploadForm.addEventListener('click', (evt) => {
   evt.preventDefault();
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  uploadForm.reset();
+  deactivateScaleEditor();
+  removeSlider();
 });
 
 document.addEventListener('keydown', onEscKeyDown);

@@ -5,6 +5,7 @@ const effectLevel = effectLevelField.querySelector('.effect-level__value');
 const effectsList = document.querySelector('.effects__list');
 const imgPreview = document.querySelector('.img-upload__preview img');
 
+
 const resetEffect = () => {
   imgPreview.removeAttribute('class');
 };

@@ -1,14 +1,15 @@
 /*Функционал по редактированию фотографий*/
-const effectLevelField = document.querySelector('.effect-level');
-const slider = effectLevelField.querySelector('.effect-level__slider');
-const effectLevel = effectLevelField.querySelector('.effect-level__value');
-const effectsList = document.querySelector('.effects__list');
-const imgPreview = document.querySelector('.img-upload__preview img');
 const STEP = 0.1;
 const MIN = 0;
 const MAX = 1;
 const HUNDRED = 100;
 const THREE = 3;
+const effectLevelField = document.querySelector('.effect-level');
+const slider = effectLevelField.querySelector('.effect-level__slider');
+const effectLevel = effectLevelField.querySelector('.effect-level__value');
+const effectsList = document.querySelector('.effects__list');
+const imgPreview = document.querySelector('.img-upload__preview img');
+
 
 const resetEffect = () => {
   imgPreview.removeAttribute('class');

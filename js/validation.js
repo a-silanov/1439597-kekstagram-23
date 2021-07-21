@@ -30,6 +30,7 @@ closeUploadForm.addEventListener('click', (evt) => {
   evt.preventDefault();
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  uploadForm.reset();
   deactivateScaleEditor();
   removeSlider();
 });

@@ -1,4 +1,4 @@
-import {onEscKeyDown} from './util.js';
+import {onEscKeyDown} from './utils.js';
 import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
 import {createSlider, removeSlider} from './editor.js';
 import {showSuccessMessage, showErrorMessage} from './alerts.js';

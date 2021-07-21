@@ -1,12 +1,12 @@
 const page = document.querySelector('body');
-import {isEscKeyDown} from './utils.js';
+import {onEscKeyDown} from './utils.js';
 const successMessage = document.querySelector('#success').content.querySelector('.success');
 const successButton = successMessage.querySelector('.success__button');
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
 const errorButton = errorMessage.querySelector('.error__button');
 
 const closeSuccessMessageEsc = (evt) => {
-  if (isEscKeyDown(evt)) {
+  if (onEscKeyDown(evt)) {
     successMessage.remove();
     document.removeEventListener('keydown', closeSuccessMessageEsc);
   }
@@ -19,7 +19,7 @@ const closeSuccessMessageClick = (evt) => {
 };
 
 const closeErrorMessageEsc = (evt) => {
-  if (isEscKeyDown(evt)) {
+  if (onEscKeyDown(evt)) {
     errorMessage.remove();
     document.removeEventListener('keydown', closeErrorMessageEsc);
   }

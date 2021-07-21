@@ -1,4 +1,4 @@
-import {getRandomNumber} from './util.js';
+import {getRandomNumber} from './utils.js';
 
 const COUNT_POST_PHOTO = 25;
 const MIN_COMMENT_NUMBER = 5;

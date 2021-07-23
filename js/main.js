@@ -6,3 +6,4 @@ import './comment.js';
 import './storage.js';
 import './scale.js';
 import './editor.js';
+import './filter.js';

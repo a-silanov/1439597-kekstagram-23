@@ -3,6 +3,8 @@ import {activateScaleEditor, deactivateScaleEditor} from './scale.js';
 import {createSlider, removeSlider} from './editor.js';
 import {showSuccessMessage, showErrorMessage} from './alerts.js';
 import {sendData} from './api.js';
+import {startFilters} from './filter.js';
+
 
 const HASHTAGS_COUNT = 5;
 const HASHTAGS_CHECK = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
@@ -27,6 +29,7 @@ const onUploadFile = () => {
 };
 
 uploadFile.addEventListener('change', onUploadFile);
+startFilters();
 
 closeUploadForm.addEventListener('click', (evt) => {
   evt.preventDefault();

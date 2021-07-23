@@ -48,5 +48,22 @@ const showAlert = (message) => {
   document.body.append(alertContainer);
 };
 
+const shuffle = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = getRandomNumber(0, i);
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
+
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 export {getRandomNumber};
-export {onEscKeyDown, hideElement, showElement, showAlert};
+export {onEscKeyDown, hideElement, showElement, showAlert, shuffle, debounce};

@@ -1,10 +1,9 @@
 import {debounce, shuffle} from './utils.js';
-import {getPosts} from './storage.js';
-import {renderThumbnails} from './thumbnail.js';
+import {getCurrentComments} from './storage.js';
 const filterForm = document.querySelector('.img-filters__form');
 const imgFilters = document.querySelector('.img-filters');
 const filterButtons = filterForm.querySelectorAll('.img-filters__button');
-const RANDOM_COUNT = 10;
+
 
 const clearPosts = () => {
   const photos = document.querySelectorAll('.picture');
@@ -22,22 +21,18 @@ const startFilters = () => {
   imgFilters.classList.remove('img-filters--inactive');
   const showDefault = () => {
     clearPosts();
-    renderThumbnails(getPosts());
   };
 
   const showRandom = () => {
     clearPosts();
-    const posts = getPosts().slice();
+    const posts = getCurrentComments().slice();
     shuffle(posts);
-    const randomPosts = posts.slice(0, RANDOM_COUNT);
-    renderThumbnails(randomPosts);
   };
 
   const showDiscussed = () => {
     clearPosts();
-    const discussedPosts = getPosts().slice();
+    const discussedPosts = getCurrentComments().slice();
     discussedPosts.sort(compareAmountComments);
-    renderThumbnails(discussedPosts);
   };
 
   const changeFilter = (evt) => {

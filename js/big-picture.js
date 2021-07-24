@@ -1,5 +1,6 @@
 import {onEscKeyDown, hideElement} from './utils.js';
 import {posts} from './data.js';
+import {startFilters} from './filter.js';
 
 const COMMENTS_LOAD_STEP = 5;
 const PHOTO_WIDTH = 35;
@@ -20,7 +21,7 @@ const uploadOverlay = uploadForm.querySelector('.img-upload__overlay');
 const commentInput = bigPicture.querySelector('.social__footer-text');
 const uploadFile = uploadForm.querySelector('#upload-file');
 
-
+startFilters();
 const openPopup = (photo) => {
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
